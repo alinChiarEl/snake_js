@@ -1,8 +1,9 @@
 //define grid
 
 //configurable
-let totalCols = 30; // the grid size is square, for now. Maybe i will make it a different size in the future
-let minSquareSize = "10px";
+let totalCols = 25; // the grid size is square, for now. Maybe i will make it a different size in the future
+let minSquareSize = "20px";
+// let minSquareSizeMobile = "16px";
 let snakeSpeed = 4; //the speed is inverse to 1/s. So speed 5 = 5 squares per second
 let target = []; //this is the position of the target
 let doNotDeleteTail = 0; //a flag which we set to 1 when we eat a target, to increase snake size by 1.
@@ -13,6 +14,14 @@ let lastRenderTime = 0;
 let delta = 0; //the time interval on which we want the game loop to run(every second)
 let currentKey = "";
 let keyPressDuration = 100;
+const isMobile = window.matchMedia("(max-width: 600px)").matches;
+
+if (isMobile) {
+  totalCols = 15;
+  // console.log("we are on mobile " + totalCols);
+} else {
+  // console.log("we are on a bigger screen " + totalCols);
+}
 
 const mobileDirections = document.querySelectorAll(".mobileDirection");
 const start = document.getElementById("start");
@@ -91,7 +100,7 @@ const modal = Modal(document.getElementById("root"), {
   height: 200,
   title: "Game Over",
   closed: false,
-  closable: true,
+  closable: false,
   draggable: true,
   position: "center",
 });
@@ -280,14 +289,12 @@ function detectCollision() {
 
   newSnakeHead = [x, y];
 
-  collisiontWithTarget = snake.some(
-    ([sx, sy]) => sx === Number(target[0]) && sy === Number(target[1])
-  );
+  collisiontWithTarget = x == Number(target[0]) && y == Number(target[1]);
 
   if (collisiontWithTarget) {
-    // console.warn("Collision with target");
-    food.play();
     removeTarget();
+    food.play();
+
     increaseScore();
     doNotDeleteTail = 1;
 
@@ -355,6 +362,7 @@ function moveSnake(direction) {
 
   const [x, y] = snakeHead;
 
+  //the snake moves by deleting the tail and adding a new head. The rest of the segments remain in place
   if (!detectCollision()) {
     if (doNotDeleteTail != 0) {
       doNotDeleteTail = 0;
@@ -414,7 +422,7 @@ function drawSnakeHtml() {
 }
 // target.js
 function removeTarget() {
-  let t = document.querySelector(".target").classList.remove("target");
+  document.querySelector(".target").classList.remove("target");
 }
 
 function defineTarget() {

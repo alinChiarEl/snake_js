@@ -1,5 +1,6 @@
 :root {
-  --square-size: 25px; /* global scope */
+  --square-size: 1px; /* global scope */
+  --square-size-mobile: 1px; /* global scope */
   --items-per-line: 20;
   box-sizing: border-box;
 
@@ -117,13 +118,25 @@ body {
 .target {
   position: relative;
 }
-
 .target::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: #ff2e2e;
+  background: #ff2e2e !important;
   mask-image: radial-gradient(circle, white 60%, transparent 70%);
+}
+
+.target.snakebody::before {
+  background: linear-gradient(
+    135deg,
+    var(--snake-dark),
+    var(--snake-light)
+  ) !important;
+}
+
+.lm-modal-title {
+  display: grid !important;
+  place-items: center;
 }
 
 .toast {
@@ -155,17 +168,27 @@ body {
     overflow-y: hidden !important;
     place-items: center;
     display: grid !important;
-    height: 100vh !important;
+    /* height: 100vh !important; */
+
+    height: 100dvh !important;
+
     width: 100vw;
     grid-template-rows: 30px 3fr 1fr;
     gap: 2px;
   }
+
   .grid-container {
     width: 90%;
     height: 100%;
-    grid-template-columns: repeat(30, minmax(5px, 1fr)) !important;
+    grid-template-columns: repeat(
+      var(--items-per-line),
+      minmax(var(--square-size-mobile), 1fr)
+    ) !important;
 
-    grid-template-rows: repeat(30, minmax(5px, 1fr)) !important;
+    grid-template-rows: repeat(
+      var(--items-per-line),
+      minmax(var(--square-size-mobile), 1fr)
+    ) !important;
   }
 
   .mobileControls {
