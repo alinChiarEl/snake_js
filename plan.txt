@@ -1,0 +1,7 @@
+Overview
+init() - sets up everything
+
+gameLoop() - starts the snake moving loop
+pauseGameLoop() - pauses the game by changing snakeState var
+endGame() - 
+restart() - closes the modal, calls init, calls gameLoop() to start the game. 

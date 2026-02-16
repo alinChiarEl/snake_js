@@ -1,0 +1,206 @@
+:root {
+  --square-size: 25px; /* global scope */
+  --items-per-line: 20;
+  box-sizing: border-box;
+
+  /* background */
+  --darker: #0f6f4a;
+  --lighter: #1aa06b;
+
+  /* --darker: #0d3b66;
+  --lighter: #1e6f9f; */
+
+  /* snake  */
+  --snake-light: #ffcc33;
+  --snake-dark: #ff6a00;
+  --snakehead-light: #ff8c1a;
+  --snakehead-dark: #c45100;
+}
+body {
+  background: rgb(0, 18, 3);
+}
+
+.item.darker {
+  background-color: var(--darker);
+}
+.item.lighter {
+  background-color: var(--lighter);
+}
+body {
+  /* margin: 0;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+   */
+  overflow-y: hidden !important;
+  place-items: center;
+  display: grid !important;
+  height: 100vh !important;
+  width: 100vw;
+
+  grid-template-rows: 20px 1fr;
+}
+
+#score {
+  /* position: ; */
+
+  background-color: #1e293b; /* bg-slate-800 */
+
+  color: #ffffff; /* text-white */
+
+  padding: 1rem 1.5rem; /* py-4 px-6 */
+  border-radius: 0.75rem; /* rounded-xl */
+
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  width: 10%;
+  margin: auto;
+  height: 30px;
+}
+
+.grid-container {
+  border: 1px solid black;
+
+  width: 90%;
+  max-width: 950px;
+  height: 90%;
+  margin: auto !important;
+  display: grid !important;
+
+  gap: 1px;
+  background-color: white;
+
+  grid-template-columns: repeat(
+    var(--items-per-line),
+    minmax(var(--square-size), 1fr)
+  );
+
+  grid-template-rows: repeat(
+    var(--items-per-line),
+    minmax(var(--square-size), 1fr)
+  );
+}
+
+.item {
+  /* background-color: rgb(162, 249, 91); */
+  /* color: black; */
+  color: grey;
+  font-size: 10px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.item.snakebody {
+  /* background: linear-gradient(135deg, #5d8ebb, #695deb); */
+  background: linear-gradient(135deg, var(--snake-dark), var(--snake-light));
+
+  /* softer  */
+  /* background: linear-gradient(135deg, #4ade80, #166534);  */
+}
+
+.item.snakehead {
+  background: linear-gradient(
+    135deg,
+    var(--snakehead-light),
+    var(--snakehead-dark)
+  );
+}
+
+.target {
+  position: relative;
+}
+
+.target::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ff2e2e;
+  mask-image: radial-gradient(circle, white 60%, transparent 70%);
+}
+
+.toast {
+  /* position: absolute !important;
+  bottom: 0px !important; */
+  font-size: 0.8rem !important;
+  line-height: 0.8rem !important;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+#modalContent {
+  display: grid;
+  place-items: center;
+  height: 120px;
+}
+
+/* mobile  */
+.mobileControls {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  body {
+    overflow-y: hidden !important;
+    place-items: center;
+    display: grid !important;
+    height: 100vh !important;
+    width: 100vw;
+    grid-template-rows: 30px 3fr 1fr;
+    gap: 2px;
+  }
+  .grid-container {
+    width: 90%;
+    height: 100%;
+    grid-template-columns: repeat(30, minmax(5px, 1fr)) !important;
+
+    grid-template-rows: repeat(30, minmax(5px, 1fr)) !important;
+  }
+
+  .mobileControls {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(40px, 1fr));
+    grid-template-rows: repeat(3, minmax(40px, 1fr));
+    gap: 3px;
+    place-items: center;
+    height: 80%;
+
+    width: 80%;
+    /* background-color: white; */
+  }
+
+  .mobileControls div {
+    border: 4px solid black;
+    border-radius: 5px;
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem 0.5rem;
+    transition: all 0.07s;
+    width: 80px;
+    text-align: center;
+    color: white;
+    background: rgba(128, 128, 128, 0.7);
+    text-shadow: 0 0 5px black;
+  }
+  .mobileControls .invisible {
+    opacity: 0;
+  }
+
+  .keypress {
+    display: inline-block !important;
+    border: 2px solid orange !important;
+    transition: border 0.2s, transform 0.2s !important;
+    transform: scale(1.1);
+  }
+}

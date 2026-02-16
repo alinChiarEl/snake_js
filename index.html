@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+      defer
+    ></script>
+
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- modal stuff  -->
+    <script src="https://cdn.jsdelivr.net/npm/lemonadejs/dist/lemonade.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@lemonadejs/modal/dist/index.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@lemonadejs/modal/dist/style.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Material+Icons"
+    />
+
+    <!-- gsap for some small animations  -->
+
+    <title>Snake Javascript Only</title>
+    <script defer>
+      // the menu script
+      //   document.addEventListener("DOMContentLoaded", () => {
+      //     async function init() {
+      //       fetch("/partials/menu.html")
+      //         .then((r) => r.text())
+      //         .then((html) => (document.getElementById("menu").innerHTML = html));
+      //     }
+      //     init();
+      //   });
+    </script>
+  </head>
+  <!-- <div id="menu" class="absolute"></div> -->
+  <body>
+    <div id="score"></div>
+    <div class="grid-container"></div>
+
+    <audio id="move" src="assets/move.mp3"></audio>
+    <audio id="gameover" src="assets//gameover.mp3"></audio>
+    <audio id="food" src="assets//food.mp3"></audio>
+
+    <div class="mobileControls">
+      <div class="div1 invisible"></div>
+      <div class="div2 mobileDirection" id="up">↑</div>
+      <div class="div3 invisible"></div>
+      <div class="div4 mobileDirection" id="left">←</div>
+      <div class="div5" id="start">></div>
+      <div class="div5 hidden" id="pause">||</div>
+      <div class="div6 mobileDirection" id="right">→</div>
+      <div class="div7 invisible"></div>
+      <div class="div8 mobileDirection" id="down">↓</div>
+      <div class="div9 invisible"></div>
+    </div>
+
+    <div
+      id="toastNotification"
+      class="toast fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-6 py-4 rounded-xl shadow-lg text-base"
+    ></div>
+
+    <div id="root">
+      <div style="padding: 10px">
+        <div id="modalContent">
+          <button
+            id="restartBtn"
+            class="px-6 py-3 rounded-xl font-semibold text-slate-900 shadow-lg hover:scale-105 transition"
+            style="background-color: rgb(162, 249, 91)"
+          >
+            Restart Game
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
