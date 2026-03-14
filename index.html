@@ -5,17 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <title>Snake FACUT</title>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/Draggable.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/InertiaPlugin.min.js"></script>
+    <title>Snake DESKTOP ONLY</title>
+
+    <!-- modal stuff start -->
+    <link rel="stylesheet" href="modal.css" />
+
+    <!-- modal stuff end -->
 
     <script src="snake.js" defer type="module"></script>
     <script src="game.js" defer type="module"></script>
+
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <body>
       <div id="game-board"></div>
     </body>
+
+    <div class="modal" id="pauseModal">
+      <div class="modal-header">
+        <div class="title">Info!</div>
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+      <div class="modal-body">The game is paused. Press SPACE to resume.</div>
+    </div>
   </body>
 </html>
